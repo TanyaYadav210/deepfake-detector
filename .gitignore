@@ -1,0 +1,9 @@
+archive/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+venv/
+model/*.h5
+*.dylib
+archive/
