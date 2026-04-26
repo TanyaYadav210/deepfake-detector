@@ -8,4 +8,4 @@ pillow
 fastapi
 uvicorn
 python-multipart
-numpy<2.0.0
+numpy<2.0.0gdown
