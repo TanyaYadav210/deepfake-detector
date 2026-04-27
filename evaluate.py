@@ -2,7 +2,7 @@ import os
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import classification_report, confusion_matrix, precision_score, recall_score, accuracy_score
 import matplotlib.pyplot as plt
 import seaborn as sns
 import json
@@ -47,7 +47,7 @@ plt.title('Confusion Matrix — Deepfake Detector')
 plt.ylabel('Actual')
 plt.xlabel('Predicted')
 plt.savefig("model/confusion_matrix.png")
-print("✅ Confusion matrix saved to model/confusion_matrix.png")
+print("Confusion matrix saved to model/confusion_matrix.png")
 
 # ── False Positive Rate ────────────────────────────────
 fp = cm[0][1]
@@ -57,10 +57,18 @@ print(f"\n📉 False Positive Rate: {fpr:.2f}%")
 
 # ── Save Metrics ───────────────────────────────────────
 metrics = {
+    "test_accuracy": round(accuracy_score(y_true, y_pred) * 100, 2),
+    "test_precision": round(precision_score(y_true, y_pred) * 100, 2),
+    "test_recall": round(recall_score(y_true, y_pred) * 100, 2),
     "false_positive_rate": round(fpr, 2),
     "total_test_images": len(y_true),
     "correct_predictions": int(np.sum(y_pred == y_true))
 }
+
+# Save to BOTH files so everything stays in sync
+with open("model/metrics.json", "w") as f:
+    json.dump(metrics, f, indent=2)
 with open("model/evaluation_metrics.json", "w") as f:
     json.dump(metrics, f, indent=2)
-print("✅ Evaluation complete!")
+
+print("Metrics saved to model/metrics.json and model/evaluation_metrics.json")
