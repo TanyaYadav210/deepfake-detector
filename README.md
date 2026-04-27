@@ -1,3 +1,4 @@
+
 🚀 Live Demo: https://deepfake-detector.up.railway.app
 
 # 🔍 Deepfake Detector
@@ -5,7 +6,9 @@
 A deep learning CNN model that classifies images as **Real or Deepfake** using computer vision techniques.
 
 ## 📊 Results
-- **Accuracy:** 75%+
+- **Accuracy:** 93.13%
+- **Precision:** 93.22%
+- **Recall:** 93.04%
 - **Dataset:** 140,000 images (Kaggle)
 - **False Positive Reduction:** ~20% through model optimization
 
